@@ -1,11 +1,19 @@
 name: Actions Workflow
 
-on: [push,pull_request]
+on:
+   push:
+   pull_request:
+     types: [closed,assigned,opened]
 
 jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: List Files
+        run: |
+           pwd
+           ls -a 
+           echo $GITHUB_SHA
       - name: Simple JS Action
         id: greet
         uses: actions/hello-world-javascript-action@v1
